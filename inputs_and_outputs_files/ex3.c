@@ -1,0 +1,1 @@
+/* Faça um programa que receba do usuário um arquivo texto e mostre na tela quntas letras são vogais.*/
