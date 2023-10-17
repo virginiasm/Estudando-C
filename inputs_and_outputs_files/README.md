@@ -1,4 +1,26 @@
-Manipulação de entradas e saídas
+Manipulação de entradas e saídas:
+
+Funções na biblioteca stdio.h:
+fopen()= abre o arquivo
+fputc()= Escreve um caracter em um arquivo
+fgetc()= Lê um caracter de um arquivo
+fputs()= escreve uma string em um arquivo.
+fgets()= lê uma linha de um arquivo
+fprintf()= Equivalente a printf()
+fscanf()= Equivalente a scanf()
+rewind()= Posiciona o arquivo no inicio
+feof()= Retorna verdadeiro se chegou ao fim do arquivo
+fclose()= fecha
+
+Abrindo e fechando Arquivos:
+r - abre um arquivo texto para leitura
+w - cria um arquivo texto para escrita
+a - adiciona texto ao fim de um arquivo texto
+rb - Abre um arquivo binário para leitura
+wb - abre um arquivo binário para escrita
+ab - anexa um arquivo binário 
+[r+,w+,a+]+b - O +inclui escrita ou leitura nos modos e o +b define como binário
+
 
 Exemplo:
 
@@ -11,7 +33,7 @@ int main(){
     //fopen(nome-do-arquivos, forma-de-abertura-do-arquivo)
     //w = abrir o arquivo para escrita (se o arquivo já existir, será sobreescrito com um novo zerado)
     //r = abrir o arquivo para leitura (não podemos escrever no arquivo)
-    //wa = abrir o arquivo para adição de conteúdo (se  o arquivo já existir, o conteúdo será adicionado nas linhas abaixo)
+    //a = abrir o arquivo para adição de conteúdo (se  o arquivo já existir, o conteúdo será adicionado nas linhas abaixo)
 
     arq = fopen("arquivos.txt", "w");
 
@@ -109,3 +131,58 @@ int main(){
 }
 
 ---------------------------------------------------------------
+Escrita: 
+
+#include <stdio.h>
+
+int main(){
+    FILE *arq;
+    char fruta[10];
+
+    arq = fopen("frutas.txt", "w")
+
+    if(arq){
+        printf("Informe uma fruta, ou 0 para sair.\n");
+        fgets(fruta,10,stdin); // stdin = standart input -> entrada padrão
+        while(fruta[0] != '0'){
+            fputs(fruta, arq);
+            printf("Informe uma fruta, ou 0 para sair:\n");
+            fgets(fruta,10,stdin);
+        }
+    }else{
+        printf("Não foi possivel criar o arquivo.");
+    }
+    fclose(arq);
+        }
+        return 0;
+    }
+}
+---------------------------------------------------------------
+"a" -> se o arquivo já existe ele mandar o que está no arquivo e add novas informações, caso o arquivo não exista, ele cria o arquivo e add as informações. 
+
+#include <stdio.h>
+
+int main(){
+    FILE *arq;
+    char fruta[10];
+
+    arq = fopen("frutas.txt", "a") //append
+
+    if(arq){
+        printf("Informe uma fruta, ou 0 para sair.\n");
+        fgets(fruta,10,stdin); // stdin = standart input -> entrada padrão
+        while(fruta[0] != '0'){
+            fputs(fruta, arq);
+            printf("Informe uma fruta, ou 0 para sair:\n");
+            fgets(fruta,10,stdin);
+        }
+    }else{
+        printf("Não foi possivel criar o arquivo.");
+    }
+    fclose(arq);
+        }
+        return 0;
+    }
+}
+
+-------------------------------------------------------------------
